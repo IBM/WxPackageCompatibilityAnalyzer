@@ -1,0 +1,44 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+/WxPackageCompatibilityAnalyzer-UI/tmp
+/WxPackageCompatibilityAnalyzer-UI/out-tsc
+/WxPackageCompatibilityAnalyzer-UI/bazel-out
+
+# Node
+/WxPackageCompatibilityAnalyzer-UI/npm-debug.log
+/WxPackageCompatibilityAnalyzer-UI/yarn-error.log
+
+# IDEs and editors
+/WxPackageCompatibilityAnalyzer-UI/.idea/
+/WxPackageCompatibilityAnalyzer-UI/.project
+/WxPackageCompatibilityAnalyzer-UI/.classpath
+/WxPackageCompatibilityAnalyzer-UI/.c9/
+/WxPackageCompatibilityAnalyzer-UI/*.launch
+/WxPackageCompatibilityAnalyzer-UI/.settings/
+/WxPackageCompatibilityAnalyzer-UI/*.sublime-workspace
+
+# Visual Studio Code
+/WxPackageCompatibilityAnalyzer-UI/.vscode/*
+/WxPackageCompatibilityAnalyzer-UI/!.vscode/settings.json
+/WxPackageCompatibilityAnalyzer-UI/!.vscode/tasks.json
+/WxPackageCompatibilityAnalyzer-UI/!.vscode/launch.json
+/WxPackageCompatibilityAnalyzer-UI/!.vscode/extensions.json
+/WxPackageCompatibilityAnalyzer-UI/.history/*
+
+# Miscellaneous
+/WxPackageCompatibilityAnalyzer-UI/.angular/cache
+/WxPackageCompatibilityAnalyzer-UI/.sass-cache/
+/WxPackageCompatibilityAnalyzer-UI/connect.lock
+/WxPackageCompatibilityAnalyzer-UI/coverage
+/WxPackageCompatibilityAnalyzer-UI/libpeerconnection.log
+/WxPackageCompatibilityAnalyzer-UI/testem.log
+/WxPackageCompatibilityAnalyzer-UI/typings
+/WxPackageCompatibilityAnalyzer-UI/node_modules/
+
+# System files
+.DS_Store
+Thumbs.db
+*.*.bak
+
+/WxPackageCompatibilityAnalyzer/*.*.bak

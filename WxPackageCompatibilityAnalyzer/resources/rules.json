@@ -1,0 +1,197 @@
+{
+    "version": "1.0",
+    "references": [
+        {
+            "name": "pub.cache.*",
+            "type": "java",
+            "cloudruntime": {
+                "severity": "MEDIUM",
+                "message": "Cloud Runtime does not offer Admin Console for cache configuration. This service is unlikely to work if it requires manual cache configuration through Admin Console.",
+                "recommendation": "Manage the cache configuration through the flow-services."
+            },
+            "edgeruntime": {
+                "severity": "MEDIUM",
+                "message": "Edge Runtime runs in a Docker container, manually configured cache configuration through Admin Console will not persist.",
+                "recommendation": "Manage the cache configuration through the flow-services."
+            }
+        },
+        {
+            "name": "pub.client.sftp.*",
+            "type": "java",
+            "cloudruntime": {
+                "severity": "HIGH",
+                "message": "Cloud Runtime does not offer Admin Console for SFTP configuration. This service is unlikely to work if it requires manual SFTP configuration through Admin Console.",
+                "recommendation": "Cloud Runtime is not suitable."
+            },
+            "edgeruntime": {
+                "severity": "LOW",
+                "message": "Edge Runtime runs in a Docker container, manually configured SFTP configuration through Admin Console will not persist.",
+                "recommendation": "Manage the SFTP configuration by leveraging application.properties file and creating custom Docker image for Edge Runtime."
+            }
+        },
+        {
+            "name": "pub.file.*",
+            "type": "java",
+            "cloudruntime": {
+                "severity": "HIGH",
+                "message": "File system of Cloud Runtime is not accessible and it's not possible to update fileAccessControl.cnf file.",
+                "recommendation": "Cloud Runtime is not suitable."
+            },
+            "edgeruntime": {
+                "severity": "LOW",
+                "message": " Edge Runtime runs in a Docker container, it cannot access the host file system or fileAccessControl.cnf directly.",
+                "recommendation": "Create volume mounts to access the host file system and update fileAccessControl.cnf."
+            }
+        },
+        {
+            "name": "pub.jms.*",
+            "type": "java",
+            "cloudruntime": {
+                "severity": "HIGH",
+                "message": "Cloud Runtime does not offer Admin Console for JMS Connection configuration. This service is unlikely to work if it requires manual JMS Connection configuration through Admin Console.",
+                "recommendation": "Cloud Runtime is not suitable."
+            },
+            "edgeruntime": {
+                "severity": "LOW",
+                "message": "Edge Runtime runs in a Docker container, manually configured JMS Connection configuration through Admin Console will not persist.",
+                "recommendation": "Manage the JMS configuration by leveraging application.properties file and creating custom Docker image for Edge Runtime."
+            }
+        },
+        {
+            "name": "pub.mqtt.*",
+            "type": "java",
+            "cloudruntime": {
+                "severity": "HIGH",
+                "message": "Cloud Runtime does not offer Admin Console for MQTT Connection configuration.",
+                "recommendation": "Cloud Runtime is not suitable."
+            },
+            "edgeruntime": {
+                "severity": "HIGH",
+                "message": "Edge Runtime runs in a Docker container and MQTT Connection can be configured using Admin Console only.",
+                "recommendation": "Edge Runtime is not recommended because configuration will not persist."
+            }
+        },
+        {
+            "name": "pub.publish.*",
+            "type": "java",
+            "cloudruntime": {
+                "severity": "HIGH",
+                "message": "Cloud Runtime does not offer Admin Console for webMethods Messaging configuration.",
+                "recommendation": "Cloud Runtime is not suitable."
+            },
+            "edgeruntime": {
+                "severity": "HIGH",
+                "message": "Edge Runtime has webMethods Messaging disabled.",
+                "recommendation": "Edge Runtime is not suitable. May be replace with JMS Messaging."
+            }
+        },
+        {
+            "name": "pub.remote:invoke",
+            "type": "java",
+            "cloudruntime": {
+                "severity": "HIGH",
+                "message": "Cloud Runtime does not offer Admin Console for Remote Server configuration. This service is unlikely to work if it requires manual Remote Server Configuration through Admin Console.",
+                "recommendation": "Replace the remote invocation with pub.client:http flow service of WmPublic package, assuming Remote Server is publicly accessible."
+            },
+            "edgeruntime": {
+                "severity": "HIGH",
+                "message": "Edge Runtime runs in a Docker container and it does not allow Remote Server configuration through Admin Console.",
+                "recommendation": "Replace the remote invocation with pub.client:http flow service of WmPublic package."
+            }
+        },
+        {
+            "name": "pub.trigger.*",
+            "type": "java",
+            "cloudruntime": {
+                "severity": "HIGH",
+                "message": "Cloud Runtime does not offer Admin Console to manage webMethods Messaging Triggers.",
+                "recommendation": "Cloud Runtime is not suitable."
+            },
+            "edgeruntime": {
+                "severity": "HIGH",
+                "message": "Edge Runtime has webMethods Messaging disabled.",
+                "recommendation": "Edge Runtime is not suitable. May be replace with JMS Messaging."
+            }
+        }
+    ],
+    "resources": [
+        {
+            "type": "restResource",
+            "cloudruntime": {
+                "severity": "MEDIUM",
+                "message": "Cloud Runtime does not offer endpoint URL for REST resources.",
+                "recommendation": "Create a wrapper flow-service for the flow-service in REST resource and expose it using webMethods.io Integration API."
+            },
+            "edgeruntime": {
+                "severity": "MEDIUM",
+                "message": "Edge Runtime REST resource endpoint may not work as it's hosted in a private cloud.",
+                "recommendation": "REST resources are not recommended in Edge Runtime. Otherwise, create a wrapper flow-service for the flow-service in REST resource and expose it using webMethods.io Integration API."
+            }
+        },
+        {
+            "type": "restDescriptor",
+            "cloudruntime": {
+                "severity": "MEDIUM",
+                "message": "Cloud Runtime does not offer endpoint for REST API Descriptor.",
+                "recommendation": "Create a wrapper flow-service for the flow-service for REST Resource in REST API Descriptor and expose it using webMethods.io Integration API."
+            },
+            "edgeruntime": {
+                "severity": "MEDIUM",
+                "message": "Edge Runtime REST API Descriptor endpoint URL may not be accessible as it being hosted in a private cloud.",
+                "recommendation": "REST API Descriptors are not recommended in Edge Runtime. Otherwise, create a wrapper flow-service for the flow-service for REST Resource in REST API Descriptor and expose it using webMethods.io Integration API."
+            }
+        },
+        {
+            "type": "Flat File Schema",
+            "cloudruntime": {
+                "severity": "HIGH",
+                "message": "Host filesystem of Cloud Runtime is not accessible.",
+                "recommendation": "Cloud Runtime is not suitable."
+            },
+            "edgeruntime": {
+                "severity": "MEDIUM",
+                "message": "Edge Runtime does not have WmFlatFile package by default. Flat File Schema will not be loaded.",
+                "recommendation": "Create a custom Docker image for Edge Runtime with WmFlatFile package and create volume mounts as Edge Runtimes runs in Docker container."
+            }
+        },
+        {
+            "type": "Document Part Holder",
+            "cloudruntime": {
+                "severity": "HIGH",
+                "message": "Host filesystem of Cloud Runtime is not accessible.",
+                "recommendation": "Cloud Runtime is not suitable."
+            },
+            "edgeruntime": {
+                "severity": "MEDIUM",
+                "message": "Edge Runtime does not have WmFlatFile package by default. Flat File Dictionary will not be loaded.",
+                "recommendation": "Create a custom Docker image for Edge Runtime with WmFlatFile package and create volume mounts as Edge Runtimes runs in Docker container."
+            }
+        },
+        {
+            "type": "xsltservice",
+            "cloudruntime": {
+                "severity": "MEDIUM",
+                "message": "Host filesystem of Cloud Runtime is not accessible.",
+                "recommendation": "Replace reading XML content from filesystem with URL."
+            },
+            "edgeruntime": {
+                "severity": "MEDIUM",
+                "message": "Edge Runtime does not comes with WmXSLT package. This resource will not be loaded.",
+                "recommendation": "Create a custom Docker image for Edge Runtime with WmXSLT package."
+            }
+        },
+        {
+            "type": "ConnectionData",
+            "cloudruntime": {
+                "severity": "HIGH",
+                "message": "Cloud Runtime does not offer Admin Console for JDBC Adapter configuration. JDBC Adapter connection unlikely to work due to missing jars and password update.",
+                "recommendation": "Cloud Runtime is not suitable."
+            },
+            "edgeruntime": {
+                "severity": "LOW",
+                "message": "Edge Runtime runs in a Docker container, manually configured JDBC Adapter Connection configuration through Admin Console will not persist.",
+                "recommendation": "Manage the JDBC Adapter Connection configuration by leveraging application.properties file and creating custom Docker image for Edge Runtime."
+            }
+        }
+    ]
+}

@@ -1,0 +1,47 @@
+<div class="row my-4 mx-2">
+    <div class="col-lg-12">
+        <h3>
+            <i class="fa fa-cog" aria-hidden="true"></i>
+            Source Runtime
+        </h3>
+    </div>
+</div> 
+
+<div class="row mx-2 card-container">
+    <!-- Source Runtime Configuration Card -->
+    <div class="col-lg-5">
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form>
+                        <fieldset [disabled]="isConfigBusy">
+                            <div class="row">
+                                <div class="col-lg-12 mb-3">
+                                    <label for="source-url" class="form-label">URL</label>
+                                    <input type="text" class="form-control" name="source-url"
+                                        [(ngModel)]="sourceRequest.sourceServerUrl" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 mb-3">
+                                    <label for="source-username" class="form-label">Username</label>
+                                    <input type="text" class="form-control" name="source-username"
+                                        [(ngModel)]="sourceRequest.sourceServerUsername" />
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <label for="source-password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" name="source-password"
+                                        [(ngModel)]="sourceRequest.sourceServerPassword" />
+                                </div>
+                            </div>
+                            <div style="float: right;">
+                                <button type="submit" class="btn btn-primary" [disabled]="isConfigBusy || !validateSourceRuntimeConfigInput()"
+                                    (click)="updateSourceRuntimeConfig()">Update</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>    

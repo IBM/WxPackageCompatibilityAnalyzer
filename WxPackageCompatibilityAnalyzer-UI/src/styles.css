@@ -1,0 +1,56 @@
+a {
+    color: #1776bf;
+    text-decoration: none;
+}
+
+td.icon-text {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.form-control, .form-select {
+    border-radius: 0;
+}
+
+.form-control:focus, .form-select:focus, .form-check-input:focus {
+    border-color: #1776bf;
+    box-shadow: none;
+}
+
+.form-check-input:checked {
+    background-color: #1776bf;
+}
+
+.btn.btn-primary {
+    background-color: #1776bf;
+    border-radius: 0;
+    border-color: #1776bf;
+}
+
+.btn.btn-secondary {
+    background-color: #ffffff;
+    border-color: #1776bf;
+    border-radius: 0;
+    color: #1776bf
+}
+
+.btn:focus {
+    box-shadow: none;
+}
+
+.fa-check-circle {
+    color: green;
+}
+
+.custom-dropdown {
+    position: relative;
+}
+  
+.custom-dropdown > .dropdown-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+

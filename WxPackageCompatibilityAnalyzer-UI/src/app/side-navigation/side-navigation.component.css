@@ -1,0 +1,32 @@
+nav {
+    height: 100%;
+    min-width: 180px;
+    display: flex;
+    background-color: rgba(176, 176, 176, 0.255);
+    flex-direction: column;
+}
+
+.list-group-item {
+    --bs-link-hover-color: none padding-top: 65px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    padding-top: 10px;
+}
+
+.list-group-item.active {
+    text-decoration: none;
+    color: #fff;
+    background-color: #757575;
+    border-left: 4px solid var(--wmio-primary-color, #1776bf);
+}
+
+.list-group-item:hover {
+    background-color: #b6b6b6;
+}
+
+.icon-width {
+    width: 20px;
+}

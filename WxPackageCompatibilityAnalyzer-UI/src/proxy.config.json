@@ -1,0 +1,10 @@
+{
+  "/restv2": {
+    "target": "http://localhost:5555",
+    "secure": false,
+    "changeOrigin": true,
+    "headers": {
+      "Authorization": "Basic QWRtaW5pc3RyYXRvcjptYW5hZ2U="
+    }
+  }
+}

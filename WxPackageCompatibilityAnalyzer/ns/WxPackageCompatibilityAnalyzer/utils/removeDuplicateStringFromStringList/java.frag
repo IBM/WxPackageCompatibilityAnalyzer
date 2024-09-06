@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">removeDuplicateStringFromStringList</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgaWRjID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQpTdHJpbmdbXSBpblN0cmlu
+Z0xpc3QgPSBJRGF0YVV0aWwuZ2V0U3RyaW5nQXJyYXkoaWRjLCAiaW5TdHJpbmdMaXN0IiApOw0K
+DQovLyBVc2UgYSBMaW5rZWRIYXNoU2V0IHRvIHByZXNlcnZlIHRoZSBvcmRlciBvZiBlbGVtZW50
+cw0KU2V0PFN0cmluZz4gc2V0ID0gbmV3IExpbmtlZEhhc2hTZXQ8PihBcnJheXMuYXNMaXN0KGlu
+U3RyaW5nTGlzdCkpOw0KLy8gQ29udmVydCB0aGUgc2V0IGJhY2sgdG8gYW4gYXJyYXkNClN0cmlu
+Z1tdIG91dFN0cmluZ0xpc3QgPSBzZXQudG9BcnJheShuZXcgU3RyaW5nWzBdKTsNCg0KSURhdGFV
+dGlsLnB1dChpZGMsICJvdXRTdHJpbmdMaXN0Iiwgb3V0U3RyaW5nTGlzdCk7DQppZGMuZGVzdHJv
+eSgpOw0KCQ==</value>
+</Values>

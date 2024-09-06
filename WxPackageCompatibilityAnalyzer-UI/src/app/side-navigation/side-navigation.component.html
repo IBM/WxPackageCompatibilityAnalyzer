@@ -1,0 +1,18 @@
+<nav>
+  <div>
+    <a routerLink="/" class="list-group-item" [ngClass]="selectedRoute === '/' ? 'active' : ''">
+      <i class="fa fa-cog icon-width" aria-hidden="true" ></i> <span>Source Runtime</span>
+    </a>
+    <a routerLink="/analyze-dependencies" class="list-group-item" [ngClass]="selectedRoute === '/analyze-dependencies' ? 'active' : ''">
+      <i class="fa fa-list-alt icon-width" aria-hidden="true"></i> <span>Analyze Dependencies</span>
+    </a>
+    <a routerLink="/analyze-compatibility" class="list-group-item" [ngClass]="selectedRoute === '/analyze-compatibility' ? 'active' : ''">
+      <i class="fa fa-sliders icon-width" aria-hidden="true"></i> <span>Analyze Compatibility</span>
+    </a>
+  </div>
+  <div style="position: relative; width: 100%; height: 100%;">
+    <div style="position: absolute; display: flex; justify-content: center; bottom: 70px">
+      <img src="assets/gplogo.png" style="width: 40%" />
+    </div>
+  </div>
+</nav>

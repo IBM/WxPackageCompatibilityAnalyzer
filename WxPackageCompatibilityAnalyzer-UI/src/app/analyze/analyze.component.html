@@ -1,0 +1,216 @@
+<div class="row my-4 mx-2">
+    <div class="col-lg-12">
+        <h3>
+            <i class="fa fa-list-alt" aria-hidden="true"></i>
+            Analyze Dependencies
+        </h3>
+    </div>
+</div>
+<div class="row mx-2 card-container">
+    <!-- First Card -->
+    <div class="col-xl-8">
+        <div class="card">
+            <form>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label for="package-name" class="form-label">Source Package Name</label>
+                        <div class="mb-3 custom-dropdown">
+                            <select class="form-control custom-select" id="package-name" name="package-name" [(ngModel)]="packageName" required>
+                                <option *ngFor="let value of packageList" [value]="value">{{value}}</option>
+                            </select>
+                            <i class="fa fa-sort-desc dropdown-icon" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="form-label">Asset Type</label>
+                        <div>
+                            <div class="form-check form-check-inline mb-3">
+                                <input class="form-check-input" type="radio" name="assetTypeRadio" value="resource" [(ngModel)]="assetType">
+                                <label class="form-check-label">Resources</label>
+                            </div>
+                            <div class="form-check form-check-inline mb-3">
+                                <input class="form-check-input" type="radio" name="typeRadio" value="acl" [(ngModel)]="assetType">
+                                <label class="form-check-label">ACLs</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="targetRuntimeToggle" (change)="onCheckboxChange($event)" [checked]="isTargetRuntimeEnabled">
+                            <label class="form-check-label" for="targetRuntimeToggle">Configure Target Runtime</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="showTargetRuntimeConfigForm">
+                    <div class="col-lg-6" >
+                        <div class="mb-3">
+                            <label for="target-url" class="form-label">Target Runtime URL</label>
+                            <input type="text" class="form-control" name="target-url" [(ngModel)]="targetRequest.targetServerUrl">
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="mb-3">
+                            <label for="target-username" class="form-label">Username</label>
+                            <input type="text" class="form-control" name="target-username" [(ngModel)]="targetRequest.targetServerUsername">
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="mb-3">
+                            <label for="target-password" class="form-label">Password</label>
+                            <input type="password" class="form-control" name="target-password" [(ngModel)]="targetRequest.targetServerPassword">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- Button inside card -->
+                        <div style="float: right;">
+                            <button type="submit" class="btn btn-primary" (click)="updateTargetRuntimeConfigAndAnalyzeDependencies()"
+                                [disabled]="isTargetRuntimeEnabled && !validateTargetRuntimeConfigInput()">Analyze</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-xl-4">
+        <div class="card">
+            <form>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label for="action" class="form-label">Action</label>
+                        <div class="mb-3 custom-dropdown">
+                            <select class="form-control custom-select" id="action" name="action" [(ngModel)]="action" required>
+                                <option value="download-as-csv">Download as CSV</option>
+                            </select>
+                            <i class="fa fa-sort-desc dropdown-icon" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+                <div style="float: right; display: flex;
+                flex-direction: column;
+                height: 100%; ">
+                    <button type="submit" class="btn btn-primary" (click)="downloadCsv()" 
+                        [disabled]="isObjectEmpty(resourceDependencies) && isObjectEmpty(aclDependencies)">Execute</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<!-- ASSETS SECTION -->
+<div class="row mx-2 card-container" *ngIf="assetType == 'resource' && resourceDependencies != {}">
+    <div class="col-lg-12" *ngIf="resourceDependencies.packages">
+        <p *ngIf="resourceDependencies.packages.length === 0">
+            <i class="fa fa-exclamation-circle"></i> 
+            {{this.packageName}} has no dependencies on other package(s).
+        </p>
+        <div *ngIf="resourceDependencies.packages.length !== 0" class="row">
+            <div class="col-lg-12 mt-4" *ngFor="let package of resourceDependencies.packages">
+                <div class="card">
+                    <div class="row">
+                        <p class="col-sm-9">
+                            <img title="package" class="me-2" src="assets/designer_icons/package.gif" />
+                            <b>{{package.name}}</b>
+                        </p>
+                        <p class="col-sm-3" style="text-align: right;" *ngIf="package.isInstalled === 'true'" title="Available on the Target Runtime">Installed</p>
+                        <p class="col-sm-3" style="text-align: right;" *ngIf="package.isInstalled === 'false'" title="Unvailable on the Target Runtime">Not Found</p>
+                    </div>
+                    <hr style="margin-top: 0px;">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th *ngIf="isTargetRuntimeEnabled">Status</th>
+                                    <th>Dependents</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let resource of package.assets; index as i" >
+                                    <td class="icon-text">
+                                        <img *ngIf="iconList[resource.type.value];"
+                                        title="{{resource.type.value}}" class="mx-2"
+                                        style="height: 16px; width: 16px;"
+                                        src='assets/designer_icons/{{iconList[resource.type.value]}}' />
+                                        <ng-template #default_asset>
+                                            <i title="{{resource.type.value}}" class="fa fa-question-circle-o mx-2"
+                                                aria-hidden="true"></i>
+                                        </ng-template>
+                                        {{resource.name}}
+                                    </td>
+                                    <td *ngIf="isTargetRuntimeEnabled">
+                                        <span *ngIf="resource.isAvailable === 'true'" title="Available on the Target Runtime">Available</span>
+                                        <span *ngIf="resource.isAvailable === 'false'" title="Unavailable on the Target Runtime">Unavailable</span>
+                                        <span *ngIf="resource.isAvailable === 'unknown'" title="Unavailable on the Target Runtime">Unknown</span>
+                                    </td>
+                                    <td class="icon-text">
+                                        <p *ngFor="let dependent of resource.dependents">
+                                            <span class="single-line-span" title="{{dependent.name}}">
+                                                <img *ngIf="iconList[dependent.type.value];"
+                                                    title="{{dependent.type.value}}" class="mx-2"
+                                                    style="height: 16px; width: 16px;"
+                                                    src='assets/designer_icons/{{iconList[dependent.type.value]}}' />
+                                                {{dependent.name}}
+                                            </span>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ACLs SECTION -->
+<div #acl class="row mx-2 card-container" *ngIf="assetType =='acl'">
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-12 mt-4" *ngFor="let acl of aclDependencies.acls">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <b>{{acl.name}} ACL</b>
+                        </div>
+                        <p class="col-sm-3" style="text-align: right;" *ngIf="acl.isAvailable === 'true'" title="Available on the Target Runtime">Available</p>
+                        <p class="col-sm-3" style="text-align: right;" *ngIf="acl.isAvailable === 'false'" title="Unavailable on the Target Runtime">Unavailable</p>
+                    </div>
+                    <hr style="margin-top: 0px;">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>List Dependents</th>
+                                    <th>Read Dependents</th>
+                                    <th>Write Dependents</th>
+                                    <th>Execute Dependents</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p *ngFor="let dependent of acl.listDependents">{{dependent.name}}</p>
+                                    </td>
+                                    <td>
+                                        <p *ngFor="let dependent of acl.readDependents">{{dependent.name}}</p>
+                                    </td>
+                                    <td>
+                                        <p *ngFor="let dependent of acl.writeDependents">{{dependent.name}}</p>
+                                    </td>
+                                    <td>
+                                        <p *ngFor="let dependent of acl.executeDependents">{{dependent.name}}</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
