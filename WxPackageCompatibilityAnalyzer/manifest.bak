@@ -4,15 +4,11 @@
   <value name="enabled">yes</value>
   <value name="system_package">no</value>
   <value name="version">1.0</value>
-  <record name="startup_services" javaclass="com.wm.util.Values">
-    <null name="WxPackageCompatibilityAnalyzer.admin:init"/>
-  </record>
-  <record name="shutdown_services" javaclass="com.wm.util.Values">
-    <null name="WxPackageCompatibilityAnalyzer.admin:shutDown"/>
-  </record>
+  <null name="startup_services"/>
+  <null name="shutdown_services"/>
   <null name="replication_services"/>
   <null name="requires"/>
-  <value name="listACL">Default</value>
+  <null name="listACL"/>
   <value name="webappLoad">yes</value>
   <value name="reloadWithDependentPackage">yes</value>
   <null name="build"/>
