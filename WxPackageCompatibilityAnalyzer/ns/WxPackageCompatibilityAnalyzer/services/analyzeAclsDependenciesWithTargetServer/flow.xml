@@ -2701,7 +2701,7 @@
 </MAP>
 </INVOKE>
 
-<EXIT FROM="$flow" SIGNAL="FAILURE" FAILURE-MESSAGE="No valid response received from WxPCATargetRuntimeClient API.">
+<EXIT FROM="$flow" SIGNAL="FAILURE" FAILURE-MESSAGE="No valid response received from webMethods.io Integration API.">
   <COMMENT></COMMENT>
 </EXIT>
 </SEQUENCE>
