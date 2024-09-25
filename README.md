@@ -91,13 +91,13 @@ This deployment scenario is applicable in the following situations:
 * Target Runtime is not reachable from WxPackageCompatibilityAnalyzer because of the network firewall.
 * You do not want to analyze dependencies against a Target Runtime.
 
-<img src="https://raw.githubusercontent.com/IBM/WxPackageCompatibilityAnalyzer/main/docs/images/deploymentScenario1.png" alt="Deployment scenario no target runtime" width="500"/>
+<img src="docs/images/deploymentScenario1.png" alt="Deployment scenario no target runtime" width="500"/>
 
 **2. webMethods.io Integration Cloud Runtime is a Target Runtime**
 
 This deployment scenario is applicable when your target runtime is webMethods.io Integration Cloud Runtime and you want to analyze the dependencies against it.
 
-<img src="https://raw.githubusercontent.com/IBM/WxPackageCompatibilityAnalyzer/main/docs/images/deploymentScenario2.png" alt="Deployment scenario target cloud runtime" width="750"/>
+<img src="docs/images/deploymentScenario2.png" alt="Deployment scenario target cloud runtime" width="750"/>
 
 **3. webMethods Edge Runtime is a Target Runtime**
 
@@ -109,13 +109,13 @@ There are 2 possible cases:
 
 This deployment scenario is applicable when direct access to the webMethods Edge Runtime running on private cloud is possible. It requires less setup effort.
 
-<img src="https://raw.githubusercontent.com/IBM/WxPackageCompatibilityAnalyzer/main/docs/images/deploymentScenario31.png" alt="Deployment scenario target edge runtime" width="750"/>
+<img src="docs/images/deploymentScenario31.png" alt="Deployment scenario target edge runtime" width="750"/>
 
 **Case 2: Accessing Edge Runtime through webMethods.io Integration Runtime**
 
 This deployment scenario is applicable when direct access to the webMethods Edge Runtime is not possible and you have to access through webMethods.io Integration.
 
-<img src="https://raw.githubusercontent.com/IBM/WxPackageCompatibilityAnalyzer/main/docs/images/deploymentScenario32.png" alt="Deployment scenario target edge runtime" width="750"/>
+<img src="docs/images/deploymentScenario32.png" alt="Deployment scenario target edge runtime" width="750"/>
 
 ### Deployment Steps
 Once you have identified your deployment scenario, follow the steps below:
