@@ -109,13 +109,13 @@ There are 2 possible cases:
 
 This deployment scenario is applicable when direct access to the webMethods Edge Runtime running on private cloud is possible. It requires less setup effort.
 
-<img src="https://raw.githubusercontent.com/IBM/WxPackageCompatibilityAnalyzer/main/docs/images/deploymentScenario3.png" alt="Deployment scenario target edge runtime" width="750"/>
+<img src="https://raw.githubusercontent.com/IBM/WxPackageCompatibilityAnalyzer/main/docs/images/deploymentScenario31.png" alt="Deployment scenario target edge runtime" width="750"/>
 
 **Case 2: Accessing Edge Runtime through webMethods.io Integration Runtime**
 
 This deployment scenario is applicable when direct access to the webMethods Edge Runtime is not possible and you have to access through webMethods.io Integration.
 
-Architecture TBD
+<img src="https://raw.githubusercontent.com/IBM/WxPackageCompatibilityAnalyzer/main/docs/images/deploymentScenario32.png" alt="Deployment scenario target edge runtime" width="750"/>
 
 ### Deployment Steps
 Once you have identified your deployment scenario, follow the steps below:
