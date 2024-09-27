@@ -112,7 +112,7 @@
     <array name="globalVariables" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="key">WxPCA_TARGET_SERVER_URL</value>
-        <value name="value">http://localhost:5555/</value>
+        <value name="value">http://localhost:5555</value>
         <value name="isSecure">false</value>
       </record>
       <record javaclass="com.wm.util.Values">

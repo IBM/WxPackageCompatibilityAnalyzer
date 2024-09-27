@@ -49,7 +49,6 @@ Navigate to the project directory and run the following command.
 ```
 npm run build
 ```
-Copy the build files from 'dist' directory to the 'pub' directory of WxPackageCompatibilityAnalyzer package.
 
 ### Extend rules.json
 rules.json is located in the 'resources' directory of WxPackageCompatibilityAnalyzer package.
@@ -92,19 +91,31 @@ This deployment scenario is applicable in the following situations:
 * Target Runtime is not reachable from WxPackageCompatibilityAnalyzer because of the network firewall.
 * You do not want to analyze dependencies against a Target Runtime.
 
-<img src="https://raw.githubusercontent.com/IBM/WxPackageCompatibilityAnalyzer/main/docs/images/deploymentScenario1.png" alt="Deployment scenario no target runtime" width="500"/>
+<img src="docs/images/deploymentScenario1.png" alt="Deployment scenario no target runtime" width="500"/>
 
 **2. webMethods.io Integration Cloud Runtime is a Target Runtime**
 
 This deployment scenario is applicable when your target runtime is webMethods.io Integration Cloud Runtime and you want to analyze the dependencies against it.
 
-<img src="https://raw.githubusercontent.com/IBM/WxPackageCompatibilityAnalyzer/main/docs/images/deploymentScenario2.png" alt="Deployment scenario target cloud runtime" width="750"/>
+<img src="docs/images/deploymentScenario2.png" alt="Deployment scenario target cloud runtime" width="750"/>
 
 **3. webMethods Edge Runtime is a Target Runtime**
 
 This deployment scenario is applicable when your target runtime is webMethods Edge Runtime and you want to analyze the dependencies against it.
 
-<img src="https://raw.githubusercontent.com/IBM/WxPackageCompatibilityAnalyzer/main/docs/images/deploymentScenario3.png" alt="Deployment scenario target edge runtime" width="750"/>
+There are 2 possible cases:
+
+**Case 1: Direct access to webMethods Edge Runtime**
+
+This deployment scenario is applicable when direct access to the webMethods Edge Runtime running on private cloud is possible. It requires less setup effort.
+
+<img src="docs/images/deploymentScenario31.png" alt="Deployment scenario target edge runtime" width="750"/>
+
+**Case 2: Accessing Edge Runtime through webMethods.io Integration Runtime**
+
+This deployment scenario is applicable when direct access to the webMethods Edge Runtime is not possible and you have to access through webMethods.io Integration.
+
+<img src="docs/images/deploymentScenario32.png" alt="Deployment scenario target edge runtime" width="750"/>
 
 ### Deployment Steps
 Once you have identified your deployment scenario, follow the steps below:
@@ -153,7 +164,7 @@ Navigate between the tabs on the left side of the screen:
 ### 1) Source Configuration
 Allows you to configure the source runtime.
 
-* **URL**: Enter the URL of the source runtime where the package (to be analyzed) is hosted. Example: http://localhost:5555/
+* **URL**: Enter the URL of the source runtime where the package (to be analyzed) is hosted. Example: http://localhost:5555
 * **Username**: Enter the username for the source runtime. Example: Administrator
 * **Password**: Enter the password for the source runtime. Example: manage
 * **Update**: Click this button to update the configuration and verify the connectivity to source runtime.
@@ -164,8 +175,8 @@ Allows you to analyze package dependencies and optionally, you can check their a
 * **Source Package Name**: Select the package installed on the configured source runtime from the drop-down that needs to be analyzed.
 * **Asset Type**: Choose between Resources and ACLs using the radio button based on whether you want to analyze resources (like flow-services, java services, etc.) or ACLs dependencies.
 * **Configure Target Runtime** (Optional): Select this checkbox if you want to analyze resources or ACLs dependencies against a target runtime.
-  * **Target Runtime URL**: Enter the URL of the target runtime. Example: http://localhost:5555/, if it's webMethods Edge Runtime. In case of webMethods.io Integration Cloud Runtime, refer to [WxPCACloudRuntimeClient](https://github.com/IBM/WxPCACloudRuntimeClient) to get the URL.
-  * **Username**: Enter the username for the source runtime. Example: Administrator, if it's webMethods Edhe Runtime. In case of webMethods.io Integration Cloud Runtime, provide webMethods.io Integration tenant username.
+  * **Target Runtime URL**: Enter the URL of the target runtime. Example: http://localhost:5555, if it's webMethods Edge Runtime. In case of webMethods.io Integration Cloud Runtime or accessing webMethods Edge Runtime through webMethods.io Integration Runtime, refer to [WxPCATargetRuntimeClient](https://github.com/IBM/WxPCATargetRuntimeClient) to get the URL.
+  * **Username**: Enter the username for the source runtime. Example: Administrator, if it's webMethods Edge Runtime. In case of webMethods.io Integration Cloud Runtime, provide webMethods.io Integration tenant username.
   * **Password**: Enter the password for the source runtime. Example: manage.
 * **Analyze**: Click this button to analyze the dependencies.
 
